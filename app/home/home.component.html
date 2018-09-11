@@ -1,0 +1,17 @@
+<StackLayout>
+	<ActionBar title="Home" class="action-bar" flat="true">
+	</ActionBar>
+
+	<GridLayout>
+		<ScrollView class="page">
+			<StackLayout class="home-panel">
+				<StackLayout height="100%" width="100%" backgroundColor="orange">
+					<Items [items]="items$ | async" (update)="update($event)"></Items>
+        </StackLayout>
+        
+        <Button text="GO TO PAGE 1" (tap)="page1()"></Button>
+			</StackLayout>
+		</ScrollView>
+	</GridLayout>
+
+</StackLayout>
