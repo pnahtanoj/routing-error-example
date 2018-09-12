@@ -5,6 +5,7 @@ import { Observable } from "rxjs";
 import { tap } from 'rxjs/operators';
 import { FetchItems, AddItem } from "~/home/store/home.actions";
 import { RouterExtensions } from "nativescript-angular/router";
+import { HomeService } from "~/home/home.service";
 
 @Component({
   selector: "Home",
@@ -14,10 +15,11 @@ import { RouterExtensions } from "nativescript-angular/router";
 export class HomeComponent implements OnInit, OnDestroy {
   items$: Observable<any[]>;
 
-  constructor(private store: Store<State>, private router: RouterExtensions) {
+  constructor(private store: Store<State>, private router: RouterExtensions, private data: HomeService) {
     
     console.log('HOME COMPONENT --- CONSTRUCTOR!');
-    this.items$ = this.store.select(selectItems)
+    // this.items$ = this.store.select(selectItems)
+    this.items$ = this.data.fetchItems()
       .pipe(tap(_ => console.log('HOME SELECT: ', _)));
   }
 
