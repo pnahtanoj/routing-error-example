@@ -18,16 +18,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(private store: Store<State>, private router: RouterExtensions, private data: HomeService) {
 
     console.log('HOME COMPONENT --- CONSTRUCTOR!');
-    // this.items$ = this.data.fetchItems()
     this.items$ = this.store.select(selectItems)
       .pipe(tap(_ => console.log('HOME SELECT: ', _)));
-
-    this.store.dispatch(new FetchItems());
   }
 
   ngOnInit(): void {
-    // console.log('HOME COMPONENT --- INIT!');
-    // this.store.dispatch(new FetchItems());
+    console.log('HOME COMPONENT --- INIT!');
+    this.store.dispatch(new FetchItems());
   }
 
   ngOnDestroy() {
